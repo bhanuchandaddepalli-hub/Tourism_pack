@@ -10,7 +10,7 @@ import joblib
 
 model_path = os.path.join(
     os.path.dirname(__file__),
-    "best_tourism_model_v1.joblib"
+    "best_best_tourism_model_v1.joblib"
 )
 
 model = joblib.load(model_path)
