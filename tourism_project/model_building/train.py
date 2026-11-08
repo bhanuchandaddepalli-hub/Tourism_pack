@@ -83,6 +83,33 @@ with mlflow.start_run():
 
     # Store and evaluate the best model
     best_model = grid_search.best_estimator_
+    
+# ---------------------------------------------
+# Save the Best Model using Joblib
+# ---------------------------------------------
+
+import os
+import joblib
+
+# Create deployment folder if it doesn't exist
+os.makedirs("tourism_project/deployment", exist_ok=True)
+
+# Define model path
+model_path = (
+    "tourism_project/deployment/"
+    "best_best_tourism_model_v1.joblib"
+)
+
+# Save the complete trained pipeline
+joblib.dump(best_model, model_path)
+
+# Verify model creation
+if os.path.exists(model_path):
+    print("Model saved successfully!")
+    print("Model location:", model_path)
+    print("Model size:", round(os.path.getsize(model_path) / 1024, 2), "KB")
+else:
+    print("Error: Model file was not created.")
     print("Best params:", grid_search.best_params_)
 
     classification_threshold = 0.45
